@@ -1,0 +1,327 @@
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+  }
+  
+  @media screen and (min-width: 112em) {
+    html {
+      font-size: 112.5%;
+    }
+  }
+  
+  @media screen and (min-width: 136em) {
+    html {
+      font-size: 125%;
+    }
+  }
+  
+  body {
+    margin: 0px;
+    padding: 0px;
+    width: 100vw;
+    min-height: 100vh;
+    font-family: helvetica;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .card {
+    width: 30vw;
+    min-height: 60vmin;
+    border-radius: 8px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  @media screen and (max-width: 414px) {
+    .card {
+      width: 80vw;
+    }
+  }
+  
+  .card__object {
+    height: 15vmin;
+    width: 100%;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .card__avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    padding: 5px;
+    transform: translateY(calc(15vmin - 40px));
+  }
+  
+  .card__avatar img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+  
+  .card__body {
+    min-height: 28vmin;
+    padding: 50px 20px 40px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 0 0 8px 8px;
+  }
+  
+  .card__body h3,
+  .card__body h4 {
+    box-sizing: border-box;
+    line-height: 1.6;
+    font-weight: bold;
+  }
+  
+  .card__body h4 {
+    opacity: 0.4;
+  }
+  
+  .card__body p {
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+  
+  .card__body .btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 32px;
+    font-size: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.1s ease-in;
+  }
+  
+  .card__body .btn:hover {
+    background: transparent;
+    border: 1px solid currentColor;
+  }
+  
+  img {
+    max-width: 100%;
+  }
+  
+  .bulb-container {
+    font-size: 1rem;
+    perspective: 800px;
+    position: absolute;
+    z-index: 20;
+    padding-top: 0.5em;
+    margin-bottom: 0.5em;
+    top: 0;
+    right: 20px;
+  }
+  .bulb-container::after {
+    content: "";
+    width: 1.125em;
+    height: 0.5em;
+    background: url(//www.w3cplus.com/sites/default/files/blogs/2020/2002/bulb-top.png);
+    background-size: 100% 100%;
+    position: absolute;
+    left: calc(50% - 0.5625em);
+    top: 0;
+  }
+  
+  .bulb {
+    font-size: 1rem;
+    width: 3.375em;
+    height: 11.5em;
+    margin: 0 auto;
+    transform-origin: center top;
+    animation: swing 3s ease-in-out infinite alternate;
+    position: relative;
+    transform-style: preserve3d;
+    transition: transform 0.5s ease-out;
+    cursor: pointer;
+    display: block;
+    background: none;
+    border: none;
+    -webkit-appearance: none;
+    padding: 0;
+  }
+  .bulb:focus {
+    outline-offset: 1rem;
+    outline: none;
+  }
+  
+  .bulb:hover .bulb__image img,
+  .bulb:focus .bulb__image img,
+  .bulb:active .bulb__image img {
+    outline: none;
+    animation: flicker 2s linear infinite alternate;
+  }
+  
+  .bulb:hover .bulb__image::before,
+  .bulb:focus .bulb__image::before,
+  .bulb:active .bulb__image::before {
+    outline: none;
+    animation: flicker-light 2s linear infinite alternate;
+  }
+  
+  .bulb__image {
+    outline: none;
+    transform-style: preserve3d;
+    display: block;
+    transform-origin: center top;
+    animation: scale 2.5s -1.5s ease-in-out infinite alternate;
+    position: relative;
+  }
+  .bulb__image::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - 1px);
+    bottom: 0;
+    width: 0.625em;
+    height: 0.625em;
+    background: transparent;
+    border-radius: 50%;
+    z-index: -1;
+    box-shadow: 0 0 6.375em 4em var(--light);
+    opacity: 0.6;
+    transform: scaleY(0.7) translateY(-1em) translateX(0.4em);
+    transform-origin: center top;
+  }
+  
+  .bulb__image img {
+    display: block;
+    filter: saturate(var(--saturation));
+    width: 3.375em;
+  }
+  
+  @keyframes swing {
+    0% {
+      transform: rotate(4deg);
+    }
+  
+    100% {
+      transform: rotate(-4deg);
+    }
+  }
+  
+  @keyframes scale {
+    0% {
+      transform: scale(0.98);
+      //transform: rotatex(-15deg);
+    }
+  
+    100% {
+      transform: scale(1.02);
+      //transform: rotatex(15deg);
+    }
+  }
+  
+  @keyframes flicker {
+    0%,
+    4%,
+    8%,
+    12%,
+    20%,
+    30%,
+    40%,
+    50%,
+    100% {
+      filter: saturate(0);
+    }
+  
+    2%,
+    6%,
+    10% {
+      filter: saturate(1.4);
+    }
+  
+    25%,
+    35%,
+    45% {
+      filter: saturate(1.6);
+    }
+  
+    80% {
+      filter: saturate(3);
+    }
+  }
+  
+  @keyframes flicker-light {
+    0%,
+    4%,
+    8%,
+    12%,
+    20%,
+    30%,
+    40%,
+    50%,
+    100% {
+      filter: saturate(0);
+      opacity: 0.5;
+    }
+  
+    2%,
+    6%,
+    10% {
+      filter: saturate(1.4);
+      opacity: 0.6;
+    }
+  
+    25%,
+    35%,
+    45% {
+      filter: saturate(1.6);
+      opacity: 0.6;
+    }
+  
+    80% {
+      filter: saturate(3);
+      opacity: 0.7;
+    }
+  }
+  
+  :root {
+    --color: #333;
+    --primary-color: #ffffff; /* 主色 */
+    --body-bg-color: #f1f1f1; /* body背景颜色 */
+    --card-box-shadow-color: #405070; /* card盒子阴影颜色 */
+    --btn-bg-color: #28c3f5; /* button背景颜色 */
+    --paragraph-color: gray; /* 段落文本颜色 */
+    --card-object-bg-color: #eaeff8; /* card顶部背景颜色 */
+    --title-color: #101c34; /* 标题2文本颜色 */
+    --avatar-bg-color: #fff;
+    --light: #fff;
+    --saturation: 0;
+    --invert: none;
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --color-mode: "dark";
+    }
+  }
+  
+  [data-user-color-scheme="dark"] {
+    --color: #fff;
+    --primary-color: #1a1515; /* 主色 */
+    --body-bg-color: #1a1818; /* body背景颜色 */
+    --card-box-shadow-color: #6a716e; /* card盒子阴影颜色 */
+    --btn-bg-color: #ff5722; /* button背景颜色 */
+    --paragraph-color: #c7c1c1; /* 段落文本颜色 */
+    --card-object-bg-color: #282035; /* card顶部背景颜色 */
+    --title-color: #ffffff; /* 标题2文本颜色 */
+    --avatar-bg-color: #673ab7;
+    --saturation: 1;
+    --highlight: #00fdcf;
+    --invert: 0.8;
+  }
+  
+  body {
+    background-color: var(--body-bg-color);
+    color: var(--color);
+  }
+  
